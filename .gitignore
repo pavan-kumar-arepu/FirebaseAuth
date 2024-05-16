@@ -72,3 +72,7 @@ yarn-error.log
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# Ignore everything under /Users/pavankumararepu/ except /Users/pavankumararepu/Technology/DataStructures
+/Users/pavankumararepu/Technology/*
+!/Users/pavankumararepu/Technology/MobileApps/ReactNative/TodoApp
