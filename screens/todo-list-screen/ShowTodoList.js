@@ -6,7 +6,7 @@ const ShowTodoList = () => {
     <View>
       <Text>ShowTodoList</Text>
     </View>
-  )
+  ) 
 }
 
 export default ShowTodoList;

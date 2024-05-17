@@ -10,25 +10,12 @@ import AppNavigator from './navigation/AppNavigation';
 import { NavigationContainer } from '@react-navigation/native';
 
 import Login from './screens/login-screen/Login';
+import Home from './screens/home-screen/Home';
 
 function App() {
   return (
-    // <Text> Hello </Text>
-    <Login/>
-      // <AppNavigator/>
+      <AppNavigator/>
   );
 }
 
 export default App;
-
-
-/*
-import React from 'react';
-import AppNavigator from './navigation/AppNavigation';
-import Login from './screens/login-screen/Login';
-
-export default function App() {
-  return 
-  <AppNavigator />
-  // <Login />
-}*/
