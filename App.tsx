@@ -14,7 +14,8 @@ import Home from './screens/home-screen/Home';
 
 function App() {
   return (
-      <AppNavigator/>
+      // <AppNavigator/>
+      <Home/>
   );
 }
 

@@ -5,9 +5,18 @@ import PropTypes from 'prop-types'
 const Header = props => {
   return (
     <View>
-      <Text>Header</Text>
+      <Text>{props.title}</Text>
     </View>
   )
+}
+
+Header.default = {
+    title: '',
+    type: 1
+}
+Header.prototype = {
+    title: PropTypes.string,
+    type: PropTypes.number
 }
 
 export default Header;
