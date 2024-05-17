@@ -12,6 +12,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { auth } from '../firebase';
 import style from './style';
+import { getFontFamily } from '../../assets/fonts/helper';
 
 function Login({ navigation }) {
   const [email, setEmail] = useState('');
@@ -28,6 +29,10 @@ function Login({ navigation }) {
 
   return (
     <View style={style.container}>
+   <Text style={{
+        fontSize: 30,
+        fontWeight: 600
+      }}>Welcome</Text>
       <TextInput
         style={style.input}
         placeholder="Email"

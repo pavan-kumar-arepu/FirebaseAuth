@@ -9,6 +9,8 @@ const Home = () => {
     <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
     <View>
       <Header title={"Arepu Pavan Kumar"} type={1}/>
+      <Header title={"Arepu Pavan Kumar"} type={2}/>
+      <Header title={"Arepu Pavan Kumar"} type={3}/>
     </View>
     </SafeAreaView>
   )
