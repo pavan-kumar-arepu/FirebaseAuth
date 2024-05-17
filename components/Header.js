@@ -5,7 +5,11 @@ import PropTypes from 'prop-types'
 const Header = props => {
   return (
     <View>
-      <Text>{props.title}</Text>
+      <Text style={{
+        fontFamily: 'OpenSans',
+        fontWeight: 400,
+        fontSize: 80
+      }}>{props.title}</Text>
     </View>
   )
 }
