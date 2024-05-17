@@ -18,7 +18,6 @@ const Button = props => {
     );
   };
   
-  //accidentally types default in the video, but should actually be defaultProps
   Button.defaultProps = {
     isDisabled: false,
     onPress: () => {},
