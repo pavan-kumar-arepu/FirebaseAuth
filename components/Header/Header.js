@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { getFontFamily } from '../assets/fonts/helper'
+import { getFontFamily } from '../../assets/fonts/helper'
 import style from './style'
 
 const Header = props => {
