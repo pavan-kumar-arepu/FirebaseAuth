@@ -1,55 +1,72 @@
-
-// const Login = () => {
-//   return (
-//     <View>
-//       <Text>Welcome to Login</Text>
-//     </View>
-//   )
-// }
-
-// screens/LoginScreen.js
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
-import { auth } from '../firebase';
+import { View, Text, SafeAreaView, ScrollView } from 'react-native'
+import React from 'react'
+import globalStyle from '../../assets/styles/globalStyle'
+import PropTypes from 'prop-types';
+import Input from '../../components/Input/Input';
 import style from './style';
-import { getFontFamily } from '../../assets/fonts/helper';
+import { useState } from 'react';
+import Header from '../../components/Header/Header';
+import Button from '../../components/Button/Button';
 
-function Login({ navigation }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+import { useDispatch } from 'react-redux';
+ 
 
-  const handleLogin = async () => {
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-      navigation.navigate('TodoList');
-    } catch (error) {
-      console.error(error);
-    }
+import { Pressable } from 'react-native';
+
+const Login = ({navigation}) => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    // const dispatch = useDispatch();
+    return (
+      <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={style.container}>
+          <View style={globalStyle.marginBottom24}>
+            <Header type={1} title={'Welcome Back'} />
+          </View>
+          <View style={globalStyle.marginBottom24}>
+            <Input
+              keyboardType={'email-address'}
+              label={'Email'}
+              placeholder={'Enter your email...'}
+              onChangeText={value => setEmail(value)}
+            />
+          </View>
+          <View style={globalStyle.marginBottom24}>
+            <Input
+              secureTextEntry={true}
+              label={'Password'}
+              placeholder={'******'}
+              onChangeText={value => setPassword(value)}
+            />
+          </View>
+          {error.length > 0 && <Text style={style.error}>{error}</Text>}
+          <View style={globalStyle.marginBottom24}>
+            {/* <Button
+              onPress={async () => {
+                let user = await loginUser(email, password);
+                if (!user.status) {
+                  setError(user.error);
+                } else {
+                  setError('');
+                  dispatch(logIn(user.data));
+                //   navigation.navigate(Routes.Home);
+                }
+              }}
+              title={'Login'}
+              isDisabled={email.length < 5 || password.length < 8}
+            /> */}
+          </View>
+          <Pressable
+            style={style.registrationButton}
+            onPress={() => navigation.navigate(Routes.Registration)}>
+            <Header color={'#156CF7'} type={3} title={"Don't have an account?"} />
+          </Pressable>
+        </ScrollView>
+      </SafeAreaView>
+    );
   };
-
-  return (
-    <View style={style.container}>
-   <Text style={{
-        fontSize: 30,
-        fontWeight: 600
-      }}>Welcome</Text>
-      <TextInput
-        style={style.input}
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-      />
-      <TextInput
-        style={style.input}
-        placeholder="Password"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-      />
-      
-      <Button title="Login" onPress={handleLogin} />
-    </View>
-  );
-}
-
-export default Login
+  
+  export default Login;

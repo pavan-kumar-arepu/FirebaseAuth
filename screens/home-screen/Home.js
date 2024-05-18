@@ -11,7 +11,8 @@ const Home = () => {
   return (
     <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
     <View>
-      <Header title={'Arepu Pavan Kumar'} type={1}/>
+      <Header title={'Arepu Pavan Kumar!'} type={1}/>
+      <Header title={'Arepu Pavan Kumar!'} type={3}/>
       <Tab title={"Monday 4"}/>
       <Tab title={"Wednesday 6"} isInactive={true}/>
     </View>
@@ -19,4 +20,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Home;

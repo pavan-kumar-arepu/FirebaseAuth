@@ -1,20 +1,22 @@
 
 import { StyleSheet } from "react-native";
+import { horizontalScale, verticalScale, scaleFontSize } from "../../assets/styles/scaling";
 
 const style = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      padding: 16,
-    },
-    input: {
-      height: 40,
-      borderColor: 'gray',
-      borderWidth: 1,
-      marginBottom: 12,
-      padding: 8,
-    },
-  });
-  
-  export default style
-  
+  container: {
+    marginHorizontal: horizontalScale(24),
+    flex: 1,
+    justifyContent: 'center',
+  },
+  registrationButton: {
+    alignItems: 'center',
+  },
+  error: {
+    fontFamily: 'OpenSans',
+    fontSize: scaleFontSize(16),
+    color: '#FF0000',
+    marginBottom: verticalScale(24),
+  },
+});
+
+export default style;  
