@@ -13,14 +13,15 @@ const style = StyleSheet.create({
         fontFamily: 'OpenSans', 
         fontSize: scaleFontSize(18),
         lineHeight: scaleFontSize(22),
-        fontWeight: '500'
+        fontWeight: '700'
     },
 
     title3: {
         fontFamily: 'OpenSans', 
         fontSize: scaleFontSize(16),
         lineHeight: scaleFontSize(19),
-        fontWeight: '400'
+        fontWeight: '700',
+        color: '#156CF7'
     },
 });
 

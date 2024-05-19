@@ -34,16 +34,21 @@ export const createUser = async (fullName, email, password) => {
         },
       };
     } catch (error) {
+      console.log(error);
+      const message = error
       if (error.code === 'auth/wrong-password') {
+        console.log('Entered auth/wrong-password')
         return {status: false, error: 'Please enter a correct password'};
       } else if (error.code === 'auth/user-not-found') {
+        console.log('Entered user-not-found')
         return {
           status: false,
           error:
             'The email you entered does not exist. Please create a new account.',
         };
       }
-      return {status: false, error: 'Something went wrong'};
+      console.log('Something went wrong')
+      return {status: false, error: message};
     }
   };
   

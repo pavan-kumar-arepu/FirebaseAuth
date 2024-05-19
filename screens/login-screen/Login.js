@@ -1,17 +1,17 @@
-import { View, Text, SafeAreaView, ScrollView } from 'react-native'
-import React from 'react'
+import { View, Pressable, Text, SafeAreaView, ScrollView } from 'react-native'
+import React, { useState } from 'react';
+
 import globalStyle from '../../assets/styles/globalStyle'
-import PropTypes from 'prop-types';
-import Input from '../../components/Input/Input';
 import style from './style';
-import { useState } from 'react';
+
+import Input from '../../components/Input/Input';
 import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
 
-import { useDispatch } from 'react-redux';
- 
+import PropTypes from 'prop-types';
 
-import { Pressable } from 'react-native';
+import { loginUser } from '../../api/user';
+import { useDispatch } from 'react-redux';
 
 const Login = ({navigation}) => {
     const [email, setEmail] = useState('');
@@ -24,7 +24,7 @@ const Login = ({navigation}) => {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={style.container}>
           <View style={globalStyle.marginBottom24}>
-            <Header type={8} title={'Welcome Back'} />
+            <Header type={1} title={'Welcome Back'} />
           </View>
           <View style={globalStyle.marginBottom24}>
             <Input
@@ -44,28 +44,25 @@ const Login = ({navigation}) => {
           </View>
           {error.length > 0 && <Text style={style.error}>{error}</Text>}
           <View style={globalStyle.marginBottom24}>
-            {
-            // <Button title={'Login'}/>
             <Button
-            /*
               onPress={async () => {
                 let user = await loginUser(email, password);
                 if (!user.status) {
                   setError(user.error);
                 } else {
                   setError('');
-                  dispatch(logIn(user.data));
-                //   navigation.navigate(Routes.Home);
+                  // dispatch(logIn(user.data));
+                  navigation.navigate('Home');
                 }
-              }}*/
+              }}
               title={'Login'}
               isDisabled={email.length < 5 || password.length < 8}
-            /> }
+            />
           </View>
           <Pressable
             style={style.registrationButton}
             onPress={() => navigation.navigate('Registration')}>
-            <Header color={'#156CF7'} type={3} title={"Don't have an account?"} />
+            <Header type={3} title={"Don't have an account?"} />
           </Pressable>
         </ScrollView>
       </SafeAreaView>
