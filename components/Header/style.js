@@ -4,9 +4,9 @@ import { scaleFontSize } from "../../assets/styles/scaling";
 const style = StyleSheet.create({
     title1: {
         fontFamily: 'OpenSans', 
-        fontSize: scaleFontSize(24),
+        fontSize: scaleFontSize(26),
         lineHeight: scaleFontSize(29),
-        fontWeight: '600'
+        fontWeight: '800'
     },
 
     title2: {
