@@ -7,7 +7,7 @@ import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
 import BackButton from '../../components/BackButton/BackButton';
-
+import { createUser } from '../../api/user';
 
 import globalStyle from '../../assets/styles/globalStyle'
 import PropTypes from 'prop-types';
@@ -63,17 +63,16 @@ const Registration = ({navigation}) => {
                 fullName.length <= 2 || email.length <= 5 || password.length < 8
               }
               title={'Registration'}
-             /*
-              onPress={async () => {
-                let user = await loginUser(email, password);
-                if (!user.status) {
+              onPress={ async () => {
+                let user = await createUser(fullName, email, password);
+                if (user.error) {
                   setError(user.error);
                 } else {
                   setError('');
-                  dispatch(logIn(user.data));
-                //   navigation.navigate(Routes.Home);
+                  setSuccess('You have succesfully registered');
+                  setTimeout(() => navigation.goBack(), 3000);
                 }
-              }}*/
+              }}
             /> }
           </View>
         </ScrollView>

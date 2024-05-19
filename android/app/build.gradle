@@ -70,28 +70,49 @@ def enableProguardInReleaseBuilds = false
  */
 def jscFlavor = 'org.webkit:android-jsc:+'
 
+/**
+ * Private function to get the list of Native Architectures you want to build.
+ * This reads the value from reactNativeArchitectures in your gradle.properties
+ * file and works together with the --active-arch-only flag of react-native run-android.
+ */
+def reactNativeArchitectures() {
+    def value = project.getProperties().get("reactNativeArchitectures")
+    return value ? value.split(",") : ["armeabi-v7a", "x86", "x86_64", "arm64-v8a"]
+}
+
 android {
     ndkVersion rootProject.ext.ndkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    // namespace "com.todoapp"
-    namespace = "com.ppam.todo"
+    namespace "com.todoapp"
     defaultConfig {
-        applicationId "com.ppam.todo"
+        applicationId "com.todoapp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", "false"
+        buildConfigField "boolean", "IS_HERMES_ENABLED", "false"
     }
+    
     signingConfigs {
         debug {
             storeFile file('debug.keystore')
-            storePassword 'android'
+            storePassword 'jaisriram'
             keyAlias 'androiddebugkey'
-            keyPassword 'android'
+            keyPassword 'jaisriram'
         }
     }
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        release {
+            // Add singing for release later
+        }
+    }
+
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
@@ -109,6 +130,18 @@ android {
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
+
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
+
+    // debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")
+    // debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {
+    // exclude group:'com.squareup.okhttp3', module:'okhttp'
+    // }
+
+    // implementation project(path: ":@react-native-firebase_app")
+    // implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
+
+    // debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}")
 
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")

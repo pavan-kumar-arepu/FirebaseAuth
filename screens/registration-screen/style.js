@@ -13,13 +13,13 @@ const style = StyleSheet.create({
       marginTop: verticalScale(7),
     },
     error: {
-      fontFamily: 'Inter',
+      fontFamily: 'OpenSans',
       fontSize: scaleFontSize(16),
       color: '#FF0000',
       marginBottom: verticalScale(24),
     },
     success: {
-      fontFamily: 'Inter',
+      fontFamily: 'OpenSans',
       fontSize: scaleFontSize(16),
       color: '#28a745',
       marginBottom: verticalScale(24),
