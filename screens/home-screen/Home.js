@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import globalStyle from '../../assets/styles/globalStyle'
@@ -9,13 +9,16 @@ import style from '../login-screen/style'
 
 const Home = () => {
   return (
+
+
     <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
-    <View>
-      <Header title={'Arepu Pavan Kumar!'} type={1}/>
-      <Header title={'Arepu Pavan Kumar!'} type={3}/>
-      <Tab title={"Monday 4"}/>
-      <Tab title={"Wednesday 6"} isInactive={true}/>
-    </View>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={style.container}>
+      <View style={globalStyle.marginBottom24}>
+        <Header type={1} title={'Welcome to Home'} />
+      </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }
