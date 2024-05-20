@@ -2,7 +2,23 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 # Getting Started
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+>**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till the "Creating a new application" step, before proceeding.
+
+
+## Auth Screenshots
+Registration Successful: 
+![SuccessRegistration](https://github.com/pavan-kumar-arepu/TodoApp/assets/13812858/9f752527-6387-4032-bca6-b88c060fef93)
+
+Registration Failed: 
+![Registration_AlreadyEmail](https://github.com/pavan-kumar-arepu/TodoApp/assets/13812858/e6518f77-9372-4a7e-86bc-8311ac4c4b14)
+
+Login Success:
+![LoginPage](https://github.com/pavan-kumar-arepu/TodoApp/assets/13812858/9e4c13e9-48b0-41b9-8b67-ada08f341628)
+
+Firebase Registered Users:
+![FirebaseUsers](https://github.com/pavan-kumar-arepu/TodoApp/assets/13812858/b4725999-9f7c-4808-8192-4a412638482f)
+
+
 
 ## Step 1: Start the Metro Server
 
