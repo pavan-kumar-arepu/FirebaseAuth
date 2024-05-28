@@ -10,22 +10,6 @@ import {NavigationContainer} from '@react-navigation/native';
 
 const Stack = createStackNavigator();
 
-function AppNavigator() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Login"
-        screenOptions={{header: () => null, headerShown: false}}>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Registration" component={Registration} />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="AddTodo" component={AddTodo} />
-        <Stack.Screen name="ShowTodoList" component={ShowTodoList} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
-
 export const NonAuthenticated = () => {
   return (
     <Stack.Navigator

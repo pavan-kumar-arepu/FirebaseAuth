@@ -12,6 +12,7 @@ import Header from '../../components/Header/Header';
 import style from './style';
 import {useDispatch, useSelector} from 'react-redux';
 import {logOut} from '../../api/user';
+import {resetToInitialState} from '../../redux/reducers/User';
 
 const Home = ({navigation}) => {
   // Using the useSelector hook to select the "user" slice of the store
