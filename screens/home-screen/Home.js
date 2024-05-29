@@ -50,6 +50,9 @@ const Home = ({navigation}) => {
             </Pressable>
           </View>
         </View>
+        <View style={style.box}>
+          <Text></Text>
+        </View>
         <Pressable style={style.highlightedImageContainer}>
           <Image
             style={style.highlightedImage}

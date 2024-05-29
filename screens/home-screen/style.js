@@ -12,6 +12,15 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    // backgroundColor: '#1416',
+  },
+  box: {
+    // width: 100,
+    height: 10,
+    // backgroundColor: 'lightblue',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20, // Space between views
   },
   headerIntroText: {
     fontFamily: 'OpenSans',
@@ -37,6 +46,7 @@ const style = StyleSheet.create({
   highlightedImage: {
     width: '100%',
     height: verticalScale(160),
+    borderRadius: 20,
   },
 });
 
