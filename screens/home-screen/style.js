@@ -33,8 +33,8 @@ const style = StyleSheet.create({
     marginTop: verticalScale(5),
   },
   profileImage: {
-    width: horizontalScale(50),
-    height: verticalScale(50),
+    width: horizontalScale(30),
+    height: verticalScale(30),
   },
   searchBox: {
     marginHorizontal: horizontalScale(24),

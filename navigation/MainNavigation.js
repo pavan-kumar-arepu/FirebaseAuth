@@ -30,5 +30,3 @@ export const Authenticated = () => {
     </Stack.Navigator>
   );
 };
-
-export default AppNavigator;

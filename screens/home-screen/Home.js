@@ -30,7 +30,7 @@ const Home = ({navigation}) => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={style.header}>
           <View>
-            <Text style={style.headerIntroText}>Hello, </Text>
+            <Text style={style.headerIntroText}>Welcome, </Text>
             <View style={style.username}>
               <Header title={user.displayName + ' 👋'} />
             </View>
