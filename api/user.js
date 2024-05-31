@@ -1,12 +1,26 @@
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+
 import store from '../redux/store';
 import {updateToken} from '../redux/reducers/User';
 
 export const createUser = async (fullName, email, password) => {
   try {
-    const user = await auth().createUserWithEmailAndPassword(email, password);
-    await user.user.updateProfile({displayName: fullName});
-    console.log(user);
+    // const user = await auth().createUserWithEmailAndPassword(email, password);
+    // await user.user.updateProfile({displayName: fullName});
+    const userCredential = await auth().createUserWithEmailAndPassword(
+      email,
+      password,
+    );
+    const user = userCredential.user;
+
+    // Add user details to Firestore
+    await firestore().collection('users').doc(user.uid).set({
+      displayName: displayName,
+      email: email,
+      activeBooking: null,
+    });
+
     return user;
   } catch (error) {
     if (error.code === 'auth/email-already-in-use') {
