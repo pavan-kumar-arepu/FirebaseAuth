@@ -2,21 +2,27 @@
 
 import RealmDatabase from './RealmDatabase';
 
+// UserRepository.js
+import Realm from 'realm';
+
 class UserRepository {
   static addUser(user) {
-    RealmDatabase.addUser(user);
+    try {
+      Realm.write(() => {
+        Realm.create('User', user);
+      });
+    } catch (error) {
+      console.error('Error adding user to Realm:', error);
+    }
   }
 
-  static addBooking(bookingData) {
-    RealmDatabase.addBooking(bookingData);
-  }
-
-  static fetchAllBookings() {
-    return RealmDatabase.fetchAllBookings();
-  }
-
-  static fetchAllSlots() {
-    return RealmDatabase.fetchAllSlots();
+  static getUserById(uid) {
+    try {
+      return Realm.objects('User').filtered(`uid == '${uid}'`)[0];
+    } catch (error) {
+      console.error('Error fetching user from Realm:', error);
+      return null;
+    }
   }
 }
 

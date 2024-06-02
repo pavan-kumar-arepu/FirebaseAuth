@@ -3,6 +3,7 @@ import firestore from '@react-native-firebase/firestore';
 
 import store from '../../redux/store';
 import {updateToken} from '../../redux/reducers/User';
+import UserRepository from '../realm/UserRepository';
 
 export const createUser = async (fullName, email, password) => {
   try {
@@ -12,16 +13,26 @@ export const createUser = async (fullName, email, password) => {
       password,
     );
     const user = userCredential.user;
-    console.log('Created successfully Before writing to firestore');
+    console.log('Created successfully Before writing to local Realm');
 
+    /*
     // Add user details to Firestore
     await firestore().collection('users').doc(user.uid).set({
       displayName: fullName,
       email: email,
       activeBookings: null,
     });
+    */
 
-    console.log('Created successfully After writing to firestore');
+    // Add user details to local Realm database
+    UserRepository.addUser({
+      uid: user.uid,
+      displayName: fullName,
+      email: email,
+      activeBookings: [],
+    });
+
+    console.log('Created successfully After writing to local Realm');
     return user;
   } catch (error) {
     console.log('Error during user creation or Firestore write:', error);
