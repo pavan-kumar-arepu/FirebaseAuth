@@ -3,7 +3,8 @@ import firestore from '@react-native-firebase/firestore';
 
 import store from '../../redux/store';
 import {updateToken} from '../../redux/reducers/User';
-import UserRepository from '../realm/UserRepository';
+import Realm from 'realm';
+import {LundryUser, Booking, Slot} from '../realm/schemas';
 
 export const createUser = async (fullName, email, password) => {
   try {
@@ -13,41 +14,28 @@ export const createUser = async (fullName, email, password) => {
       password,
     );
     const user = userCredential.user;
-    console.log('Created successfully Before writing to local Realm');
 
-    /*
-    // Add user details to Firestore
-    await firestore().collection('users').doc(user.uid).set({
-      displayName: fullName,
-      email: email,
-      activeBookings: null,
-    });
-    */
+    // Get a realm instance
+    const realm = await Realm.open({schema: [LundryUser, Booking, Slot]});
 
-    // Add user details to local Realm database
-    UserRepository.addUser({
-      uid: user.uid,
-      displayName: fullName,
-      email: email,
-      activeBookings: [],
+    // Start a write transaction
+    realm.write(() => {
+      const newUser = realm.create(LundryUser, {
+        uid: user.uid,
+        displayName: fullName,
+        email: email,
+        activeBookings: [], // Initialize empty list for bookings
+      });
+      console.log('User saved successfully in Realm:', newUser);
     });
 
-    console.log('Created successfully After writing to local Realm');
+    // Additional logic after successful registration
+
     return user;
   } catch (error) {
-    console.log('Error during user creation or Firestore write:', error);
-    if (error.code === 'auth/email-already-in-use') {
-      console.log('That email address is already in use');
-      return {error: 'The email you entered is already in use.'};
-    } else if (error.code === 'auth/invalid-email') {
-      console.log('Entered email is invalid');
-      return {error: 'Please enter a valid email address.'};
-    } else if (error.code === 'firestore/permission-denied') {
-      console.log('Permission denied for Firestore write');
-      return {error: 'You do not have permission to write to Firestore.'};
-    }
-    console.log('Unhandled error:', error);
-    return {error: 'Something went wrong with your request.'};
+    console.log('Error during user creation:', error);
+    // Handle registration errors
+    return {error: 'Something went wrong with user registration.'};
   }
 };
 

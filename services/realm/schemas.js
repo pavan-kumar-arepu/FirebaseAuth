@@ -2,15 +2,15 @@
 
 import {Realm} from '@realm/react';
 
-class User extends Realm.Object {
+class LundryUser extends Realm.Object {
   static schema = {
-    name: 'User',
+    name: 'LundryUser',
     primaryKey: 'uid',
     properties: {
       uid: 'string',
       displayName: 'string',
       email: 'string',
-      activeBookings: {type: 'list', objectType: 'Booking'},
+      activeBookings: {type: 'list', objectType: 'Booking'}, // Reference the Booking schema
     },
   };
 }
@@ -24,7 +24,7 @@ class Booking extends Realm.Object {
       bookingDate: 'date',
       slot: 'Slot',
       status: 'string',
-      user: 'User',
+      user: 'LundryUser',
     },
   };
 }
@@ -43,7 +43,7 @@ class Slot extends Realm.Object {
   };
 }
 
-export {User, Booking, Slot};
+export {LundryUser, Booking, Slot};
 
 /*
 src/
