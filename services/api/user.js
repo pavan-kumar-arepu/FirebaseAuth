@@ -1,36 +1,41 @@
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
-import store from '../redux/store';
-import {updateToken} from '../redux/reducers/User';
+import store from '../../redux/store';
+import {updateToken} from '../../redux/reducers/User';
 
 export const createUser = async (fullName, email, password) => {
   try {
-    // const user = await auth().createUserWithEmailAndPassword(email, password);
-    // await user.user.updateProfile({displayName: fullName});
+    // Create user with Firebase Authentication
     const userCredential = await auth().createUserWithEmailAndPassword(
       email,
       password,
     );
     const user = userCredential.user;
+    console.log('Created successfully Before writing to firestore');
 
     // Add user details to Firestore
     await firestore().collection('users').doc(user.uid).set({
-      displayName: displayName,
+      displayName: fullName,
       email: email,
-      activeBooking: null,
+      activeBookings: null,
     });
 
+    console.log('Created successfully After writing to firestore');
     return user;
   } catch (error) {
+    console.log('Error during user creation or Firestore write:', error);
     if (error.code === 'auth/email-already-in-use') {
       console.log('That email address is already in use');
       return {error: 'The email you entered is already in use.'};
     } else if (error.code === 'auth/invalid-email') {
       console.log('Entered email is invalid');
       return {error: 'Please enter a valid email address.'};
+    } else if (error.code === 'firestore/permission-denied') {
+      console.log('Permission denied for Firestore write');
+      return {error: 'You do not have permission to write to Firestore.'};
     }
-    console.log(error);
+    console.log('Unhandled error:', error);
     return {error: 'Something went wrong with your request.'};
   }
 };

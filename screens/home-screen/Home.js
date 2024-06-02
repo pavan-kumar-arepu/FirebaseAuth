@@ -11,7 +11,7 @@ import globalStyle from '../../assets/styles/globalStyle';
 import Header from '../../components/Header/Header';
 import style from './style';
 import {useDispatch, useSelector} from 'react-redux';
-import {logOut} from '../../api/user';
+import {logOut} from '../../services/api/user';
 import {resetToInitialState} from '../../redux/reducers/User';
 
 const Home = ({navigation}) => {

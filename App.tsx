@@ -15,7 +15,7 @@ import {Provider} from 'react-redux';
 import store from './redux/store';
 import {persistor} from './redux/store';
 import {PersistGate} from 'redux-persist/integration/react';
-import {checkToken} from './api/user';
+import {checkToken} from './services/api/user';
 
 const App = () => {
   const appState = useRef(AppState.currentState);

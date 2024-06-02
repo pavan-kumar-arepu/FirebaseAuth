@@ -11,7 +11,7 @@ import {logIn} from '../../redux/reducers/User';
 
 import PropTypes from 'prop-types';
 
-import {loginUser} from '../../api/user';
+import {loginUser} from '../../services/api/user';
 import {useDispatch} from 'react-redux';
 
 const Login = ({navigation}) => {
